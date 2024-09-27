@@ -1,0 +1,44 @@
+<%- include('../components/header') %>
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb">
+    <div class="container mt-5 bg-light border shadow">
+      <% if(locals.success !="" ) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= locals.success %>
+      </div>
+      <% } %>
+      <form action="/category/add" method="post" class="form-horizontal">
+        <div class="card-body">
+          <h4 class="card-title">Add Category</h4>
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Category</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                name="categoryName"
+                class="form-control"
+                id="fname"
+                placeholder="Category Name Here"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="border-top">
+          <div class="card-body">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/category" class="btn btn-info">View</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('../components/footer') %>
+</div>
