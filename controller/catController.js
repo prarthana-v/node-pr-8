@@ -47,19 +47,61 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-const editCategory = (req, res) => {
+const editCategory = async (req, res) => {
   try {
-    // let category = await CategoryModel.find({});
-    return res.render("category/edit_category");
+    const id = req.query.id;
+    let single = await catModel.findById(id);
+    console.log(single);
+
+    return res.render("category/edit_category", {
+      single,
+    });
   } catch (err) {
     console.log(err);
     return false;
   }
 };
+
+const updateCategory = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id, categoryName, status } = req.body;
+    await catModel.findByIdAndUpdate(id, {
+      category: categoryName,
+    });
+    req.flash("success", "Category Successfully update");
+    return res.redirect("/category");
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+const changeStatus = async (req, res) => {
+  try {
+    const status = req.query.status;
+    const id = req.query.id;
+    if (status == "active") {
+      await catModel.findByIdAndUpdate(id, { status: "deactive" });
+      req.flash("success", "Status Successfully changed");
+      return res.redirect("/category");
+    } else {
+      await catModel.findByIdAndUpdate(id, { status: "active" });
+      req.flash("success", "Status Successfully changed");
+      return res.redirect("/category");
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
 module.exports = {
   addCategory,
   addCategoryPage,
   catergoryPage,
   deleteCategory,
   editCategory,
+  updateCategory,
+  changeStatus,
 };
