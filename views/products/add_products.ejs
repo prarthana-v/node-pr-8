@@ -1,0 +1,140 @@
+<%- include('../components/header') %>
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb pb-5">
+    <div class="container mt-5 bg-light border shadow">
+      <% if(locals.success !="" ) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= locals.success %>
+      </div>
+      <% } %>
+      <form
+        action="/products/add"
+        method="post"
+        class="form-horizontal"
+        enctype="multipart/form-data"
+      >
+        <div class="card-body">
+          <h4 class="card-title">Add Products</h4>
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Category</label
+            >
+            <div class="col-sm-9">
+              <select name="category" id="" class="form-control">
+                <option value="">--Select Category--</option>
+                <% category.map((c)=>{ %>
+                <option value="<%= c._id %>"><%= c.category %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Sub Category</label
+            >
+            <div class="col-sm-9">
+              <select name="subcategory" class="form-control">
+                <option value="">--Select Sub-Category--</option>
+                <% subcategory.map((c)=>{ %>
+                <option value="<%= c._id %>"><%= c.subcategory %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Extra Sub Category</label
+            >
+            <div class="col-sm-9">
+              <select name="esc" id="" class="form-control">
+                <option value="">--Select extra Sub-Category--</option>
+                <% esc.map((c)=>{ %>
+                <option value="<%= c._id %>"><%= c.extrasubcategory %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Name</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Enter product Name "
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Product Description</label
+            >
+            <div class="col-sm-9">
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Product Price</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="number"
+                name="price"
+                class="form-control"
+                placeholder="Enter product Price"
+                id=""
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Product Image</label
+            >
+            <div class="col-sm-9">
+              <input type="file" name="image" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="border-top">
+          <div class="card-body">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/products" class="btn btn-info">View</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../components/footer') %>

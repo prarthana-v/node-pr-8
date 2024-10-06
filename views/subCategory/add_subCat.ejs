@@ -1,0 +1,59 @@
+<%- include('../components/header') %>
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb pb-5">
+    <div class="container mt-5 bg-light border shadow">
+      <% if(locals.success !="" ) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= locals.success %>
+      </div>
+      <% } %>
+      <form action="/subCategory/add" method="post" class="form-horizontal">
+        <div class="card-body">
+          <h4 class="card-title">Add Sub-Category</h4>
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Category</label
+            >
+            <div class="col-sm-9">
+              <select name="category" class="form-control">
+                <option value="">---select category---</option>
+                <% category.map((cat)=>{ %>
+                <option value="<%= cat._id %>"><%= cat.category %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Sub-Category</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                name="subcategory"
+                class="form-control"
+                id="fname"
+                placeholder="Sub-Category Name Here"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="border-top">
+          <div class="card-body">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/subCategory" class="btn btn-info">View</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('../components/footer') %>
+</div>

@@ -1,0 +1,80 @@
+<%- include('../components/header') %>
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb pb-5">
+    <div class="container mt-5 bg-light border shadow">
+      <% if(locals.success !="" ) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= locals.success %>
+      </div>
+      <% } %>
+      <form
+        action="/extraSubCategory/update"
+        method="post"
+        class="form-horizontal"
+      >
+        <div class="card-body">
+          <h4 class="card-title">Edit Category</h4>
+          <div class="form-group row">
+            <input type="hidden" value="<%= single._id %>" name="id" />
+
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Category</label
+            >
+
+            <div class="col-sm-9">
+              <select name="category" id="" class="form-control" value="">
+                <% category.map((sc,i)=>{ %>
+                <option value="<%= sc._id %>"><%= sc.category %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Sub Category</label
+            >
+            <div class="col-sm-9">
+              <select name="subcategory" id="" class="form-control" value="">
+                <% subcat.map((sc,i)=>{ %>
+                <option value="<%= sc._id %>"><%= sc.subcategory %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="fname"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Extra sub Category</label
+            >
+
+            <div class="col-sm-9">
+              <input
+                type="text"
+                name="extrasubcategory"
+                class="form-control"
+                id="fname"
+                value="<%= single.extrasubcategory %>"
+                placeholder="edit extra sub Category Here"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="border-top">
+          <div class="card-body">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/category" class="btn btn-info">View</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../components/footer') %>

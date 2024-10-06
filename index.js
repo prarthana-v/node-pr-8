@@ -24,6 +24,9 @@ connectDB();
 // admin panel css attachment
 app.use("/", express.static(path.join(__dirname, "public")));
 
+// upload attachment
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // passort js attachment
 const passport = require("passport");
 const passportLocal = require("./config/passportLocal");

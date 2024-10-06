@@ -1,0 +1,86 @@
+<%- include('../components/header') %>
+<div class="page-wrapper">
+  <!-- ============================================================== -->
+  <!-- Bread crumb and right sidebar toggle -->
+  <!-- ============================================================== -->
+  <div class="page-breadcrumb" style="height: 100%">
+    <div class="row">
+      <div class="col-12 d-flex no-block align-items-center">
+        <h4 class="page-title ms-2 my-3">Sub-Category</h4>
+      </div>
+
+      <div class="container-fluid">
+        <% if(locals.success !="" ) { %>
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <%= locals.success %>
+        </div>
+        <% } %>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <h5 class="card-title">Table</h5>
+
+                  <a href="/subCategory/add" class="btn btn-success">Add</a>
+                </div>
+              </div>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Sub-Category</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% subcat.map((cat,i)=>{ %>
+                  <tr>
+                    <th scope="row"><%= ++i %></th>
+                    <td><%= cat.subcategory %></td>
+                    <td><%= cat.categoryId.category %></td>
+                    <td>
+                      <a
+                        href="/subcategory/changeStatus?status=<%= cat.status %>&id=<%= cat.id %>"
+                        class="<% if(cat.status == `active`) { %> btn btn-success <% } else { %> btn btn-danger <% } %>"
+                      >
+                        <%= cat.status %>
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href=" /subCategory/delete?id=<%=cat.id %>"
+                        class="btn btn-danger btn-sm"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </a>
+                      <a
+                        href=" /subCategory/edit?id=<%=cat.id %>"
+                        class="btn btn-primary btn-sm"
+                      >
+                        <i class="fa fa-edit"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- End footer -->
+  <!-- ============================================================== -->
+</div>
+
+<%- include('../components/footer') %>
